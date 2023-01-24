@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy a product</title>
+    <style>
+        table, th, tr, td {
+            border: 1px solid black;
+        }
+        div.red {
+            background-color: orangered;
+        }
+        div.green {
+            background-color: lawngreen;
+        }
+    </style>
+</head>
+<body>
+    <h1>Marketplace</h1>
+    <th:block th:if="${success != null}">
+        <div th:class="*{success} ? green : red">
+            <span th:text="*{success} ? 'Item bought successfully' : 'Failed to buy item'"></span></div>
+    </th:block>
+    <h2>Your credit information</h2>
+    <table>
+        <tbody>
+            <tr><td>Name</td><td th:text="${user.username}"></td></tr>
+            <tr><td>Balance</td><td th:text="${user.balance}"></td></tr>
+        </tbody>
+    </table>
+    <h2>Shopping items</h2>
+    <table>
+        <thead>
+            <tr><td>ID</td><td>Name</td><td>Price</td><td>Buy it</td></tr>
+        </thead>
+        <tbody>
+            <th:block th:each="item : ${shopItems}">
+                <tr>
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.price}"></td>
+                    <td><a th:href="@{'/buy/item?itemId=' + ${item.id}}">Buy it</a></td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</body>
+</html>

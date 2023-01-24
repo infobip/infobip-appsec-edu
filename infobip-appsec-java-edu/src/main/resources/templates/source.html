@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Source fetcher</title>
+    <style>
+        div.red {
+            background-color: orangered;
+        }
+        div.green {
+            background-color: lawngreen;
+        }
+    </style>
+</head>
+<body>
+<h1>Fetch any source on the web</h1>
+<h2>Who uses browser right clicks ?!</h2>
+<th:block th:if="${success != null}">
+    <div th:class="*{success} ? green : red">
+        <span th:text="*{success} ? 'Fetch successful' : 'Fetch failed. Check your URL.'"></span></div>
+</th:block>
+<form autocomplete="off" method="post">
+    <p>Input <s th:if="${revenge}">any</s> URL down below and see that HTML under the hood. <i th:if="${!revenge}">(e.g. https://portal.infobip.com/)</i></p>
+    <p th:if="${revenge}">We are smarter this time, don't forget that we are security enthusiasts :)</p>
+    <p><input type="text" name="host"/><input type="submit" name="submit"/></p>
+</form>
+<th:block th:if="${source != null && not #strings.isEmpty(source)}">
+    <div th:text="${source}"></div>
+</th:block>
+</body>
+</html>

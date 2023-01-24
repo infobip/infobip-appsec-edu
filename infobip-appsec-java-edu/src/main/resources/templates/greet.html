@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Greet you</title>
+</head>
+<body>
+<h1>Free greeting service 1.0.0-RC1 is finally out!</h1>
+<form autocomplete="off" method="post">
+    <p>Greet yourself down below ...</p>
+    <p><small>Got this from thymeleaf 4.1 Messages docs ... and its working! What a task ...</small></p>
+    <p><input type="text" name="name"/><input type="submit" name="submit"/></p>
+</form>
+<th:block th:if="${name != null && not #strings.isEmpty(name)}">
+    <span th:utext="#{hello.name(${name})}"></span>
+</th:block>
+</body>
+</html>

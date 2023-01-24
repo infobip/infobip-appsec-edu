@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dir us</title>
+</head>
+<body>
+<h1>Listing</h1>
+<h2>Did you ever see a Linux directory? No? List a Linux directory at our web service!</h2>
+<form autocomplete="off" method="post">
+    <p>List any path in home dir, but only home ... we are also security enthusiasts :)</p>
+    <p><input type="text" name="dir"/><input type="submit" name="submit"/></p>
+</form>
+<th:block th:if="${output != null && not #strings.isEmpty(output)}">
+    <span th:text="${output}"></span>
+</th:block>
+</body>
+</html>

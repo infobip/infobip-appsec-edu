@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Application Security Home</title>
+    <style>
+        table, th, tr, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Application Security education project!</h1>
+    <p>Below are all listed available endpoints</p>
+    <h2>Available endpoints</h2>
+    <th:block th:if="${endpoints != null && not #lists.isEmpty(endpoints)}">
+        <table>
+            <thead>
+            <tr>
+                <th>path</th>
+                <th>description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="endpoint : ${endpoints}">
+                <tr>
+                    <td th:text="${endpoint.description}"></td>
+                    <td><a th:href="@{${endpoint.path}}"><span th:text="${endpoint.path}"></span></a></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </th:block>
+</body>
+</html>
